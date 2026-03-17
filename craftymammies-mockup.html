@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crafty Mammies — Redesign Mock-up</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --rose:    #C1566B;
+    --rose-lt: #E8A0AE;
+    --cream:   #FAF6F1;
+    --warm:    #F2E8DC;
+    --bark:    #3D2B1F;
+    --bark-lt: #6B4C3B;
+    --gold:    #C49A5A;
+    --white:   #FFFFFF;
+    --grey:    #8C7B72;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--bark);
+    overflow-x: hidden;
+  }
+
+  /* ── ANNOUNCEMENT BAR ── */
+  .announce {
+    background: var(--rose);
+    color: var(--white);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--cream);
+    border-bottom: 1px solid rgba(61,43,31,0.1);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 0 48px;
+    height: 70px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bark-lt);
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--rose); }
+  .nav-logo {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--bark);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--rose); }
+  .nav-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+  }
+  .nav-actions a {
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bark-lt);
+    font-weight: 500;
+  }
+  .nav-cart {
+    background: var(--rose);
+    color: var(--white) !important;
+    padding: 8px 20px;
+    border-radius: 2px;
+    transition: background 0.2s;
+  }
+  .nav-cart:hover { background: var(--bark) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 88vh;
+    overflow: hidden;
+  }
+  .hero-left {
+    background: var(--warm);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px 80px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left::before {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(193,86,107,0.12), transparent 70%);
+    top: -100px;
+    left: -100px;
+  }
+  .hero-tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rose);
+    font-weight: 500;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--rose);
+  }
+  .hero-h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    line-height: 1.05;
+    color: var(--bark);
+    font-weight: 900;
+    margin-bottom: 24px;
+  }
+  .hero-h1 em {
+    font-style: italic;
+    color: var(--rose);
+  }
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--bark-lt);
+    line-height: 1.7;
+    max-width: 380px;
+    margin-bottom: 40px;
+  }
+  .hero-btns { display: flex; gap: 16px; align-items: center; }
+  .btn-primary {
+    background: var(--bark);
+    color: var(--white);
+    padding: 16px 36px;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-primary:hover { background: var(--rose); transform: translateY(-1px); }
+  .btn-secondary {
+    color: var(--bark-lt);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid var(--rose-lt);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-secondary:hover { color: var(--rose); border-color: var(--rose); }
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 56px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(61,43,31,0.1);
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--bark);
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--grey);
+  }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+    background: var(--bark);
+  }
+  .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    display: block;
+    transition: transform 8s ease;
+  }
+  .hero-right:hover .hero-img { transform: scale(1.04); }
+  .hero-badge {
+    position: absolute;
+    bottom: 48px;
+    left: -20px;
+    background: var(--rose);
+    color: var(--white);
+    padding: 20px 28px;
+    border-radius: 2px;
+    box-shadow: 4px 4px 24px rgba(0,0,0,0.2);
+  }
+  .hero-badge strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+  .hero-badge span { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.9; }
+
+  /* ── TRUST BAR ── */
+  .trust-bar {
+    background: var(--bark);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .trust-item {
+    padding: 28px 32px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .trust-item:last-child { border-right: none; }
+  .trust-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+  .trust-text strong {
+    display: block;
+    color: var(--white);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+  }
+  .trust-text span {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── SECTION TITLES ── */
+  .section { padding: 96px 80px; }
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 56px;
+  }
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rose);
+    font-weight: 500;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--rose);
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 900;
+    color: var(--bark);
+    line-height: 1.1;
+  }
+  .section-title em { font-style: italic; color: var(--rose); }
+  .link-all {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bark-lt);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rose-lt);
+    padding-bottom: 2px;
+    font-weight: 500;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  .link-all:hover { color: var(--rose); }
+
+  /* ── COLLECTIONS GRID ── */
+  .collections-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 320px 320px;
+    gap: 16px;
+  }
+  .col-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+    cursor: pointer;
+    background: var(--warm);
+  }
+  .col-card:first-child { grid-row: 1 / 3; }
+  .col-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    display: block;
+  }
+  .col-card:hover img { transform: scale(1.06); }
+  .col-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(30,15,8,0.65) 0%, transparent 55%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 28px;
+    transition: background 0.3s;
+  }
+  .col-card:hover .col-overlay {
+    background: linear-gradient(to top, rgba(193,86,107,0.55) 0%, transparent 60%);
+  }
+  .col-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .col-card:first-child .col-name { font-size: 2rem; }
+  .col-count {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+  }
+  .col-arrow {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .col-card:hover .col-arrow { opacity: 1; transform: translateY(0); }
+
+  /* ── PRODUCTS ── */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .product-card {
+    cursor: pointer;
+  }
+  .product-img-wrap {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+    background: var(--warm);
+    aspect-ratio: 3/4;
+    margin-bottom: 16px;
+  }
+  .product-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .product-card:hover .product-img-wrap img { transform: scale(1.05); }
+  .product-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--rose);
+    color: var(--white);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    font-weight: 500;
+  }
+  .product-quick {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    background: var(--bark);
+    color: var(--white);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 12px;
+    border-radius: 2px;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.3s, transform 0.3s;
+    font-weight: 500;
+  }
+  .product-card:hover .product-quick { opacity: 1; transform: translateY(0); }
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--bark);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .product-price {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--rose);
+  }
+  .product-stars {
+    font-size: 0.7rem;
+    color: var(--gold);
+    margin-bottom: 6px;
+    letter-spacing: 2px;
+  }
+
+  /* ── STORY SECTION ── */
+  .story-section {
+    background: var(--warm);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    overflow: hidden;
+  }
+  .story-img-side {
+    position: relative;
+    min-height: 560px;
+    overflow: hidden;
+  }
+  .story-img-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .story-content {
+    padding: 80px 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .story-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-style: italic;
+    line-height: 1.45;
+    color: var(--bark);
+    margin: 24px 0 32px;
+    padding-left: 24px;
+    border-left: 3px solid var(--rose);
+  }
+  .story-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--bark-lt);
+    margin-bottom: 36px;
+  }
+
+  /* ── REVIEWS ── */
+  .reviews-section {
+    background: var(--bark);
+    padding: 96px 80px;
+  }
+  .reviews-section .section-label { color: var(--rose-lt); }
+  .reviews-section .section-label::before { background: var(--rose-lt); }
+  .reviews-section .section-title { color: var(--white); }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 56px;
+  }
+  .review-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 36px;
+    border-radius: 3px;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .review-card:hover { background: rgba(255,255,255,0.09); transform: translateY(-3px); }
+  .review-stars { color: var(--gold); font-size: 0.9rem; letter-spacing: 3px; margin-bottom: 16px; }
+  .review-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+  .review-author {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    font-weight: 500;
+  }
+  .review-author span { color: var(--rose-lt); }
+
+  /* ── NEWSLETTER ── */
+  .newsletter {
+    background: var(--rose);
+    padding: 72px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .nl-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  .nl-sub { color: rgba(255,255,255,0.8); font-size: 0.95rem; line-height: 1.6; }
+  .nl-form { display: flex; gap: 0; }
+  .nl-input {
+    flex: 1;
+    padding: 18px 24px;
+    border: none;
+    background: rgba(255,255,255,0.15);
+    color: var(--white);
+    font-size: 0.9rem;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+    border-radius: 2px 0 0 2px;
+  }
+  .nl-input::placeholder { color: rgba(255,255,255,0.6); }
+  .nl-btn {
+    background: var(--bark);
+    color: var(--white);
+    border: none;
+    padding: 18px 32px;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    border-radius: 0 2px 2px 0;
+    transition: background 0.2s;
+  }
+  .nl-btn:hover { background: #2a1d14; }
+  .nl-note { font-size: 0.72rem; color: rgba(255,255,255,0.6); margin-top: 12px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #2A1D14;
+    padding: 64px 80px 40px;
+    color: rgba(255,255,255,0.5);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 56px;
+  }
+  .footer-brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+  .footer-brand-name span { color: var(--rose); }
+  .footer-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+  .footer-socials { display: flex; gap: 12px; }
+  .social-pill {
+    background: rgba(255,255,255,0.08);
+    padding: 8px 16px;
+    border-radius: 2px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .social-pill:hover { background: var(--rose); color: var(--white); }
+  .footer-col h4 {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 10px; }
+  .footer-col a {
+    text-decoration: none;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.45);
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--rose-lt); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+  }
+
+  /* ── MOCK-UP BANNER ── */
+  .mockup-banner {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--bark);
+    color: var(--white);
+    padding: 14px 20px;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    z-index: 999;
+    border-left: 3px solid var(--rose);
+    max-width: 220px;
+    line-height: 1.5;
+  }
+  .mockup-banner strong { display: block; color: var(--rose-lt); margin-bottom: 2px; font-size: 0.78rem; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-tag   { animation: fadeUp 0.6s ease both; }
+  .hero-h1    { animation: fadeUp 0.6s 0.1s ease both; }
+  .hero-sub   { animation: fadeUp 0.6s 0.2s ease both; }
+  .hero-btns  { animation: fadeUp 0.6s 0.3s ease both; }
+  .hero-stats { animation: fadeUp 0.6s 0.4s ease both; }
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce">🇬🇧 Free UK delivery on orders over £35 &nbsp;·&nbsp; Handmade in Northern Ireland &nbsp;·&nbsp; 1–2 day dispatch</div>
+
+<!-- NAV -->
+<nav>
+  <ul class="nav-links">
+    <li><a href="#">Kids</a></li>
+    <li><a href="#">Adults</a></li>
+    <li><a href="#">Gifts</a></li>
+    <li><a href="#">Workwear</a></li>
+  </ul>
+  <a href="#" class="nav-logo">Crafty <span>Mammies</span></a>
+  <div class="nav-actions">
+    <a href="#">Search</a>
+    <a href="#">Account</a>
+    <a href="#" class="nav-cart">Cart (0)</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Handmade in Northern Ireland</div>
+    <h1 class="hero-h1">Gifts they'll<br><em>treasure</em><br>forever.</h1>
+    <p class="hero-sub">Personalised embroidered keepsakes, lovingly crafted to order. For the little ones who light up your world.</p>
+    <div class="hero-btns">
+      <a href="#" class="btn-primary">Shop Now</a>
+      <a href="#" class="btn-secondary">Our Story</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <span class="stat-num">5,000+</span>
+        <span class="stat-label">Happy Customers</span>
+      </div>
+      <div>
+        <span class="stat-num">★ 4.9</span>
+        <span class="stat-label">Average Rating</span>
+      </div>
+      <div>
+        <span class="stat-num">1–2</span>
+        <span class="stat-label">Days Dispatch</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img class="hero-img"
+      src="https://craftymammies.com/cdn/shop/files/il_1140xN.7791482825_bfwp.jpg?v=1772574787&width=713"
+      alt="Personalised embroidered gift">
+    <div class="hero-badge">
+      <strong>New In</strong>
+      <span>Easter Collection</span>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <div class="trust-icon">🧵</div>
+    <div class="trust-text">
+      <strong>Made to Order</strong>
+      <span>Personalised just for you</span>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">🚚</div>
+    <div class="trust-text">
+      <strong>Fast UK Dispatch</strong>
+      <span>1–2 working days</span>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">⭐</div>
+    <div class="trust-text">
+      <strong>5-Star Rated</strong>
+      <span>Trusted by thousands</span>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">🇬🇧</div>
+    <div class="trust-text">
+      <strong>UK Based</strong>
+      <span>Northern Ireland proud</span>
+    </div>
+  </div>
+</div>
+
+<!-- SHOP BY COLLECTION -->
+<section class="section">
+  <div class="section-header">
+    <div>
+      <div class="section-label">Browse</div>
+      <h2 class="section-title">Shop by <em>Collection</em></h2>
+    </div>
+    <a href="#" class="link-all">View All →</a>
+  </div>
+  <div class="collections-grid">
+    <!-- Large card -->
+    <div class="col-card">
+      <img src="https://scontent-man2-1.xx.fbcdn.net/v/t39.30808-6/643824165_875119218853210_2338272391940910541_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=102&ccb=1-7&_nc_sid=13d280&_nc_ohc=-10Co26TAxcQ7kNvwGRUs3V&_nc_oc=AdkXmFhvIeU1sEnUikqagcdmss7sMcIRyk0xr-dbjl5ifV1Zzzn7gJwwemegv53Yfn8&_nc_zt=23&_nc_ht=scontent-man2-1.xx&_nc_gid=qhNiMoW984lQcwDr0eI2mQ&_nc_ss=8&oh=00_AfzZtasTogz0-3PiA8dC8l_SPw2gbR2VPO6CmuVvopLzBw&oe=69BF351D" alt="Kids">
+      <div class="col-overlay">
+        <div class="col-name">Kids</div>
+        <div class="col-count">Pyjamas, Bags, Towels & More</div>
+      </div>
+      <div class="col-arrow">→</div>
+    </div>
+    <!-- Small cards -->
+    <div class="col-card">
+      <img src="https://craftymammies.com/cdn/shop/files/Screenshot2024-04-04at10.55.29.png?v=1712224590&width=713" alt="Adults">
+      <div class="col-overlay">
+        <div class="col-name">Adults</div>
+        <div class="col-count">T-Shirts, Sweatshirts & Bags</div>
+      </div>
+      <div class="col-arrow">→</div>
+    </div>
+    <div class="col-card">
+      <img src="https://scontent-man2-1.xx.fbcdn.net/v/t39.30808-6/631141031_860411073657358_2935139380100616681_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=7b2446&_nc_ohc=vjRd0imca4sQ7kNvwGgYr1C&_nc_oc=AdlIH9DCnBqFA5KV0nxoduGNh4mgZszcg-VHuD3_XhlXm_qrSW52hVgvFiJmwM-fNUo&_nc_zt=23&_nc_ht=scontent-man2-1.xx&_nc_gid=uyFvtVPAbU4oD_y1cflJ4Q&_nc_ss=8&oh=00_AfxBFf_ywGMagj_HuJBFVOU_nznrtTiqljR0njSXVyZwyQ&oe=69BF4879" alt="Gifts">
+      <div class="col-overlay">
+        <div class="col-name">Gifts</div>
+        <div class="col-count">Patches, Pins & Keepsakes</div>
+      </div>
+      <div class="col-arrow">→</div>
+    </div>
+    <div class="col-card">
+      <img src="https://craftymammies.yourwebshop.com/images/Catalog/Product/TS013/800/TS013_LS00_2026.jpg" alt="Workwear">
+      <div class="col-overlay">
+        <div class="col-name">Workwear</div>
+        <div class="col-count">Custom Branded Apparel</div>
+      </div>
+      <div class="col-arrow">→</div>
+    </div>
+    <div class="col-card">
+      <img src="https://scontent-man2-1.xx.fbcdn.net/v/t39.30808-6/488255112_614473058251162_7493741461275850912_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=102&ccb=1-7&_nc_sid=7b2446&_nc_ohc=lOrA1hAkPK8Q7kNvwE8vkEw&_nc_oc=Adks9oay-pTMNfiC4gLYdg8yyfiKaefuETrn6PioAftnt8gFm7MIGl0qpG8hWFFuhl0&_nc_zt=23&_nc_ht=scontent-man2-1.xx&_nc_gid=cYYkY-QeJKxAkGg_2syIOg&_nc_ss=8&oh=00_AfzElw0T4pLj-J2t8F2naBGbLW3zu1TBqvuam74KUQvnqw&oe=69BF2C14" alt="Towels">
+      <div class="col-overlay">
+        <div class="col-name">Towels</div>
+        <div class="col-count">Sports & Personalised</div>
+      </div>
+      <div class="col-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+<!-- BEST SELLERS -->
+<section class="section" style="padding-top:0; background: var(--white);">
+  <div class="section-header">
+    <div>
+      <div class="section-label">Popular Now</div>
+      <h2 class="section-title">Customer <em>Favourites</em></h2>
+    </div>
+    <a href="#" class="link-all">Shop All →</a>
+  </div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="https://scontent-man2-1.xx.fbcdn.net/v/t39.30808-6/484348661_599094076455727_8414526933678309016_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=13d280&_nc_ohc=ZKzmIeR35k4Q7kNvwEcOpuS&_nc_oc=AdkZMUz9oJx9L12CjlMj1LGOKGJmNVebBQjqH5OHCGlcJgtdId7UXrwVjtGbvwdiiZU&_nc_zt=23&_nc_ht=scontent-man2-1.xx&_nc_gid=NrIbBMDyg522P-LUmjCBpQ&_nc_ss=8&oh=00_AfzhaMKYNl5s3TbIbxNQvTZFoqwC3BazMeAaJPXZeFyhaQ&oe=69BF5159" alt="Personalised Golf Towel">
+        <div class="product-badge">Best Seller</div>
+        <div class="product-quick">Quick Add</div>
+      </div>
+      <div class="product-stars">★★★★★</div>
+      <div class="product-name">Personalised Towel</div>
+      <div class="product-price">From £14.00</div>
+    </div>
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="https://scontent-man2-1.xx.fbcdn.net/v/t39.30808-6/483525056_599102123121589_7997521409873408184_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=13d280&_nc_ohc=IEJgoZJdKDIQ7kNvwFQ8yJ7&_nc_oc=AdlruL99YcggWKl0ndEJdW_lmlYFIfxD7_2WE0r-e-2Uy-cYpK8-6FkNEzmZxyH0U9w&_nc_zt=23&_nc_ht=scontent-man2-1.xx&_nc_gid=rwFc3vbtw4Y7kdULw7V-Hw&_nc_ss=8&oh=00_Afwpmh6Bn8wDqCPgF9l5gd8hN1OrEZ2OgQFhLtZprAiCcg&oe=69BF502C" alt="Kids Embroidered Pyjamas">
+        <div class="product-badge">New</div>
+        <div class="product-quick">Quick Add</div>
+      </div>
+      <div class="product-stars">★★★★★</div>
+      <div class="product-name">Kids Printed Pyjamas</div>
+      <div class="product-price">From £18.00</div>
+    </div>
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="https://scontent-man2-1.xx.fbcdn.net/v/t39.30808-6/488383922_614470634918071_6588871318605216095_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=101&ccb=1-7&_nc_sid=7b2446&_nc_ohc=umMjB0AqSIIQ7kNvwE6ikVF&_nc_oc=AdlbDy7mN4qrfqeXabbaDPcCg2numwnUmqaleTV-1Fb7etZ3nGVOtRdssA3ZCPFkjDE&_nc_zt=23&_nc_ht=scontent-man2-1.xx&_nc_gid=_IbJN1FIA6a9Q1CA7M-CaA&_nc_ss=8&oh=00_AfzC2AI86zi-Az6h3K-ha69IO6ij5v5xoYZwH6kzPdACNA&oe=69BF6181" alt="Personalised Name Bag">
+        <div class="product-quick">Quick Add</div>
+      </div>
+      <div class="product-stars">★★★★★</div>
+      <div class="product-name">Personalised Name Bag</div>
+      <div class="product-price">From £12.50</div>
+    </div>
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="https://scontent-man2-1.xx.fbcdn.net/v/t39.30808-6/487134742_621488750882926_3030614343589401355_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=102&ccb=1-7&_nc_sid=7b2446&_nc_ohc=VbeIjphorP0Q7kNvwEOpXu1&_nc_oc=AdmYZBvRVQYwfOkwTv3NPUd0pfRDMycDKNEzhgVhq-bLYl7fZZrvESnTCx7gh6ZyCn8&_nc_zt=23&_nc_ht=scontent-man2-1.xx&_nc_gid=rKZ2UDcmJ8p8SD14oxltkQ&_nc_ss=8&oh=00_Afzl1Ij4WFa9EexmQgQZWbdzVZXGkxX_-i56Kw5WMcGq1Q&oe=69BF39CF" alt="Embroidered Sweatshirt">
+        <div class="product-badge">Sale</div>
+        <div class="product-quick">Quick Add</div>
+      </div>
+      <div class="product-stars">★★★★☆</div>
+      <div class="product-name">Embroidered Adult Sweatshirt</div>
+      <div class="product-price">From £24.00</div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR STORY -->
+<div class="story-section">
+  <div class="story-img-side">
+    <img src="https://scontent-man2-1.xx.fbcdn.net/v/t39.30808-6/487784663_611952315169903_5535440556858531571_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=13d280&_nc_ohc=G1T86-M0QrQQ7kNvwG0Kyrl&_nc_oc=AdkHVq_w6dVwwxLD0gzItSD2sqe8DUau_vggBfpZu3cpPu-pCRoecEuApjiAbu6q6LU&_nc_zt=23&_nc_ht=scontent-man2-1.xx&_nc_gid=tfh63J6ECwDRQgiibgpRow&_nc_ss=8&oh=00_AfyoeFnuinr1aIqqQaFQIAu9uqledHkXBiN8VQVlD6wiew&oe=69BF49B9" alt="Handmade with love">
+  </div>
+  <div class="story-content">
+    <div class="section-label">Our Story</div>
+    <blockquote class="story-quote">"Every stitch is placed with care — because your memories deserve nothing less."</blockquote>
+    <p class="story-body">We're a small family business based in Northern Ireland, turning everyday moments into lifelong keepsakes. Every order is made by hand, personalised to your exact specifications, and dispatched with love.</p>
+    <a href="#" class="btn-primary" style="display:inline-block; width:fit-content;">Meet the Maker →</a>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<div class="reviews-section">
+  <div class="section-label">What Customers Say</div>
+  <h2 class="section-title">Loved by <em style="color:var(--rose-lt)">Families</em> Everywhere</h2>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Absolutely beautiful quality. Ordered for my daughter's birthday and it arrived perfectly packaged. Will definitely be ordering again!"</p>
+      <div class="review-author">Sarah M. &nbsp;·&nbsp; <span>Verified Purchase</span></div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"The embroidery is incredibly detailed. You can tell real care goes into every item. Fast delivery too — arrived in time for Christmas!"</p>
+      <div class="review-author">James T. &nbsp;·&nbsp; <span>Verified Purchase</span></div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Ordered personalised pyjamas for my twins and they're obsessed. Exceptional quality and the personalisation makes them feel really special."</p>
+      <div class="review-author">Emma R. &nbsp;·&nbsp; <span>Verified Purchase</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- NEWSLETTER -->
+<div class="newsletter">
+  <div>
+    <h3 class="nl-title">Get 10% off your first order</h3>
+    <p class="nl-sub">Join thousands of happy customers and be the first to hear about new collections and exclusive offers.</p>
+  </div>
+  <div>
+    <div class="nl-form">
+      <input class="nl-input" type="email" placeholder="Your email address">
+      <button class="nl-btn">Subscribe</button>
+    </div>
+    <p class="nl-note">No spam, ever. Unsubscribe any time.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">Crafty <span>Mammies</span></div>
+      <p class="footer-desc">Personalised embroidered gifts, handmade with love in Northern Ireland. Fast UK dispatch, made just for you.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-pill">Instagram</a>
+        <a href="#" class="social-pill">Facebook</a>
+        <a href="#" class="social-pill">Pinterest</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#">Kids</a></li>
+        <li><a href="#">Adults</a></li>
+        <li><a href="#">Gifts & Keepsakes</a></li>
+        <li><a href="#">Workwear</a></li>
+        <li><a href="#">New Arrivals</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>About</h4>
+      <ul>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Reviews</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Crafty Mammies. All rights reserved.</span>
+    <span>Designed with ❤️ in Northern Ireland</span>
+  </div>
+</footer>
+
+<!-- MOCK-UP LABEL -->
+<div class="mockup-banner">
+  <strong>🎨 Design Mock-up</strong>
+  Prepared by Dallas Digital — for discussion purposes only.
+</div>
+
+</body>
+</html>
